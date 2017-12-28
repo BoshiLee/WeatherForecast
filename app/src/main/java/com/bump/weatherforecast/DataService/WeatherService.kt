@@ -68,7 +68,6 @@ object WeatherUtils {
 
     fun returnDataString(dateString: String) : String {
 
-
         val regularFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         regularFormatter.timeZone = TimeZone.getTimeZone("UTC")
         var convertedDate = Date()
