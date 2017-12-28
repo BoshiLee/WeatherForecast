@@ -10,16 +10,26 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var forecastListAdapter: ForecastListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        WeatherService.getNextThreeDayForecast { isSuccess ->
+            if (isSuccess) {
+                forecastListAdapter.notifyDataSetChanged()
+            }
+
+        }
         setupAdapter()
 
     }
 
     private fun setupAdapter() {
-        forecast_List.adapter = ForecastListAdapter(this, WeatherService.threeDayForecast)
+        this.forecastListAdapter = ForecastListAdapter(this, WeatherService.threeDayForecast)
+        forecast_List.adapter = this.forecastListAdapter
+
         forecast_List.layoutManager = LinearLayoutManager(this)
     }
 }

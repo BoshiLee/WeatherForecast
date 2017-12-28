@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.bump.weatherforecast.DataService.WeatherUtils
 import com.bump.weatherforecast.Model.Weather
 
 /**
@@ -33,9 +34,9 @@ class ForecastListAdapter(val context: Context, val weathers: List<Weather>)
         private val desc = itemView?.findViewById<TextView>(R.id.descriptionTextView)
 
         fun bind(weather: Weather) {
-            date?.text = weather.date
-            minTemp?.text = weather.minTemp.toString()
-            maxTemp?.text = weather.maxTemp.toString()
+            date?.text = WeatherUtils.returnDataString(weather.date)
+            minTemp?.text = WeatherUtils.returnCelsius(weather.minTemp).toString()
+            maxTemp?.text = WeatherUtils.returnCelsius(weather.maxTemp).toString()
             humidity?.text = weather.humidity.toString()
             desc?.text = weather.description
         }
